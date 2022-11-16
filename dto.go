@@ -15,7 +15,8 @@ type BuyerParams struct {
 
 type CreateInvoice struct {
 	Data struct {
-		ID string `json:"id"`
+		ID  string `json:"id"`
+		URL string `json:"url"`
 	} `json:"data"`
 }
 
