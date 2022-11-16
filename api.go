@@ -1,4 +1,4 @@
-package coingate
+package bitpay
 
 import (
 	"bytes"

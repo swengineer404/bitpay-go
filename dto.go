@@ -1,4 +1,4 @@
-package coingate
+package bitpay
 
 type CreateInvoiceParams struct {
 	Price           float64     `json:"price"`
