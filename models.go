@@ -1,6 +1,15 @@
 package bitpay
 
 const (
+	InvoiceStatusNew       = "new"
+	InvoiceStatusPaid      = "paid"
+	InvoiceStatusConfirmed = "confirmed"
+	InvoiceStatusComplete  = "complete"
+	InvoiceStatusInvalid   = "invalid"
+	InvoiceStatusExpired   = "expired"
+)
+
+const (
 	EventCodePaid            = 1003
 	EventCodeExpired         = 1004
 	EventCodeConfirmed       = 1005
