@@ -17,11 +17,17 @@ const (
 	EventCodeFailedToConfirm = 1013
 )
 
+const (
+	InvoiceExceptionUnderpaid = "paidPartial"
+	InvoiceExceptionOverpaid  = "paidOver"
+)
+
 type Invoice struct {
 	ID                   string `json:"id"`
 	OrderID              string `json:"orderId"`
 	URL                  string `json:"url"`
 	Status               string `json:"status"`
+	ExceptionStatus      string `json:"exceptionStatus"`
 	PaymentDisplayTotals struct {
 		BTC string `json:"BTC"`
 	} `json:"paymentDisplayTotals"`
