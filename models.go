@@ -27,7 +27,7 @@ type Invoice struct {
 	OrderID              string `json:"orderId"`
 	URL                  string `json:"url"`
 	Status               string `json:"status"`
-	ExceptionStatus      string `json:"exceptionStatus"`
+	ExceptionStatus      any    `json:"exceptionStatus"`
 	PaymentDisplayTotals struct {
 		BTC string `json:"BTC"`
 	} `json:"paymentDisplayTotals"`
