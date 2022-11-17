@@ -33,7 +33,7 @@ type WebhookEvent struct {
 	Event struct {
 		Code int    `json:"code"`
 		Name string `json:"name"`
-	}
+	} `json:"event"`
 	Data struct {
 		Invoice
 	} `json:"data"`
