@@ -21,9 +21,14 @@ func (c *Client) CreateInvoice(params *CreateInvoiceParams) (*CreateInvoice, err
 	return &res, c.api.send("/invoices", "POST", params, &res)
 }
 
+func (c *Client) GetInvoice(id string) (*Invoice, error) {
+	var res InvoiceResult
+	return &res.Data.Invoice, c.api.send("/invoices/"+id, "GET", nil, &res)
+}
+
 func (c *Client) GetBTCAddress(invoiceId string) (string, error) {
 	var res InvoiceData
-	if err := c.api.send(fmt.Sprintf("/invoices/%s", invoiceId), "POST", nil, &res); err != nil {
+	if err := c.api.send(fmt.Sprintf("/invoiceData/%s", invoiceId), "POST", nil, &res); err != nil {
 		return "", err
 	}
 

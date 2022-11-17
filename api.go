@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"io"
 	"net/http"
 	"time"
 )
@@ -34,13 +35,17 @@ func newAPIClient(url string, token string) *apiClient {
 }
 
 func (c *apiClient) send(path, method string, params, out any) error {
-	b, _ := json.Marshal(params)
-	m := map[string]any{}
-	json.Unmarshal(b, &m)
-	m["token"] = c.token
-	b, _ = json.Marshal(m)
-	
-	req, err := http.NewRequest(method, c.url+path, bytes.NewReader(b))
+	var reader io.Reader
+	if params != nil {
+		b, _ := json.Marshal(params)
+		m := map[string]any{}
+		json.Unmarshal(b, &m)
+		m["token"] = c.token
+		b, _ = json.Marshal(m)
+		reader = bytes.NewReader(b)
+	}
+
+	req, err := http.NewRequest(method, c.url+path, reader)
 	if err != nil {
 		return err
 	}

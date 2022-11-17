@@ -1,34 +1,39 @@
 package bitpay
 
 type CreateInvoiceParams struct {
-	Price           float64     `json:"price"`
-	Currency        string      `json:"currency"`
-	OrderId         string      `json:"order_id"`
-	NotificationURL string      `json:"notification_url"`
-	RedirectURL     string      `json:"redirect_url"`
-	Buyer           BuyerParams `json:"buyer"`
-}
-
-type BuyerParams struct {
-	Email string `json:"email"`
+	Description     string  `json:"itemDesc"`
+	Price           float64 `json:"price"`
+	Currency        string  `json:"currency"`
+	OrderId         string  `json:"orderId"`
+	NotificationURL string  `json:"notificationURL"`
+	RedirectURL     string  `json:"redirectURL"`
+	Buyer           Buyer   `json:"buyer"`
 }
 
 type CreateInvoice struct {
 	Data struct {
-		ID                   string `json:"id"`
-		URL                  string `json:"url"`
-		PaymentDisplayTotals struct {
-			BTC string `json:"BTC"`
-		} `json:"paymentDisplayTotals"`
+		Invoice
 	} `json:"data"`
 }
 
 type InvoiceData struct {
 	Invoice struct {
-		PaymentCodes struct {
-			BTC struct {
-				Address string `json:"ADDRESS"`
-			} `json:"BTC"`
-		} `json:"paymentCodes"`
+		Invoice
 	} `json:"invoice"`
+}
+
+type InvoiceResult struct {
+	Data struct {
+		Invoice
+	} `json:"data"`
+}
+
+type WebhookEvent struct {
+	Event struct {
+		Code int    `json:"code"`
+		Name string `json:"name"`
+	}
+	Data struct {
+		Invoice
+	} `json:"data"`
 }
