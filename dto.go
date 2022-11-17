@@ -13,6 +13,7 @@ type CreateInvoiceParams struct {
 type CreateInvoice struct {
 	Data struct {
 		Invoice
+		ExtendNotifications bool `json:"extendedNotifications"`
 	} `json:"data"`
 }
 
