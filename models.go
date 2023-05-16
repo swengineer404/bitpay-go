@@ -1,5 +1,7 @@
 package bitpay
 
+import "strconv"
+
 const (
 	InvoiceStatusNew       = "new"
 	InvoiceStatusPaid      = "paid"
@@ -22,6 +24,14 @@ const (
 	InvoiceExceptionOverpaid  = "paidOver"
 )
 
+type MinerFee struct {
+	TotalFee int `json:"totalFee"`
+}
+
+func (m MinerFee) FormatTotalFee() string {
+	return strconv.FormatFloat(float64(m.TotalFee)/float64(100000000), 'f', 6, 64)
+}
+
 type Invoice struct {
 	ID                   string `json:"id"`
 	OrderID              string `json:"orderId"`
@@ -31,6 +41,12 @@ type Invoice struct {
 	PaymentDisplayTotals struct {
 		BTC string `json:"BTC"`
 	} `json:"paymentDisplayTotals"`
+	PaymentDisplaySubTotals struct {
+		BTC string `json:"BTC"`
+	} `json:"paymentDisplaySubTotals"`
+	MinerFees []struct {
+		BTC MinerFee `json:"BTC"`
+	} `json:"minerFees"`
 	Buyer        Buyer
 	PaymentCodes struct {
 		BTC struct {
