@@ -44,7 +44,7 @@ type Invoice struct {
 	PaymentDisplaySubTotals struct {
 		BTC string `json:"BTC"`
 	} `json:"paymentDisplaySubTotals"`
-	MinerFees []struct {
+	MinerFees struct {
 		BTC MinerFee `json:"BTC"`
 	} `json:"minerFees"`
 	Buyer        Buyer
